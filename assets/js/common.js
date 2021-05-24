@@ -6,13 +6,21 @@ async function onPageLoad() {
     let urlArray = window.location.href.split('/');
     let path = urlArray[urlArray.length - 1];
 
+    let restrictedUrls = ['login.html', 'signup.html'];
+
     let accessToken = localStorage.access_token;
-    if (accessToken && path == 'login.html') {
-        window.location = 'dashboard.html';
+    if (accessToken) {
+        if (restrictedUrls.includes(path)) {
+            window.location = 'dashboard.html';
+        }
+        return;
     }
 
-    if (!accessToken && path != 'login.html') {
-        window.location = 'login.html';
+    if (!accessToken) {
+        if (!restrictedUrls.includes(path)) {
+            window.location = 'login.html';
+        }
+        return;
     }
 }
 
@@ -114,12 +122,30 @@ function fetchAPIHeaders() {
         'ShowBegins-APP-Secret': 'SHOW_BEGINS_APP_SECRET',
     };
 
-    if (localStorage.accessToken) {
-        headers.access_token = 'Bearer' + localStorage.accessToken;
+    if (localStorage.access_token) {
+        headers.access_token = 'Bearer ' + localStorage.access_token;
     }
+    console.log(headers)
     return headers;
 }
 
 function handleAPIStatusCodes(statusCode) {
     addToast("Some error happened", "error");
+}
+
+let urlArray = window.location.href.split('/');
+let path = urlArray[urlArray.length - 1];
+if (path != 'login.html') {
+    document.getElementById("logout-button").addEventListener('click', logout);
+}
+
+function logout() {
+    callPostApi('logout').then((response) => {
+        if (response.status === 'success') {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            localStorage.removeItem('user_data');
+            window.location = 'login.html';
+        }
+    });
 }

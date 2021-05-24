@@ -14,7 +14,11 @@ function sumbitLoginForm(e) {
         'email': document.getElementById('email-field').value,
         'password': document.getElementById('password-field').value,
     };
+    doLogin(params);
 
+}
+
+function doLogin(params) {
     callPostApi('login', params).then((response) => {
         if (response.status === 'success') {
             handleLoginSuccess(response.data)
@@ -30,6 +34,6 @@ function handleLoginSuccess(data) {
     localStorage.setItem('refresh_token', data.refresh_token);
     localStorage.setItem('user_data', JSON.stringify(data.user_data));
     window.location = 'dashboard.html';
-
 }
+
 
