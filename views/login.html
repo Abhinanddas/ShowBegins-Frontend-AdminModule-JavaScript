@@ -17,6 +17,7 @@
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/login.css">
     <link rel="stylesheet" href="../assets/css/toastr.css">
+    <link href="../assets/css/common.css" rel="stylesheet" />
     <title>
         Login
     </title>
@@ -28,30 +29,32 @@
         <div class="card-body">
             <div class="form-group">
 
-            <form id="login-form">
-                <div class="typography-line" style="text-align: left">
-                    <h1>Login </h1>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" name="email" id="email-field" aria-describedby="emailHelp"
-                        placeholder="Enter email" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" name="password" id="password-field"
-                        placeholder="Password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" id="login-form-submit">Submit</button>
-                <small id="emailHelp" class="form-text text-muted">Don’t have an account? <a class="txt2" href="signup.html">
-                        Sign Up
-                    </a></small>
-            </form>
+                <form id="login-form">
+                    <div class="typography-line" style="text-align: left">
+                        <h1>Login </h1>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" name="email" id="email-field"
+                            aria-describedby="emailHelp" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" name="password" id="password-field"
+                            placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="login-form-submit">Submit</button>
+                    <small id="emailHelp" class="form-text text-muted">Don’t have an account? <a class="txt2"
+                            href="signup.html">
+                            Sign Up
+                        </a></small>
+                </form>
+            </div>
         </div>
-    </div>
-    <script defer src="../assets/js/login.js"></script>
-    <script defer src="../assets/js/toastr.js"></script>
-    <script defer src="../assets/js/common.js"></script>
+        <div hidden id="spinner"></div>
+        <script defer src="../assets/js/login.js"></script>
+        <script defer src="../assets/js/toastr.js"></script>
+        <script defer src="../assets/js/common.js"></script>
 </body>
 
 </html>

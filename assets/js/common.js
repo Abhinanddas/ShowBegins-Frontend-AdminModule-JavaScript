@@ -3,6 +3,7 @@ const apiRoute = 'http://127.0.0.1:8000/api/';
 document.addEventListener("load", onPageLoad());
 
 async function onPageLoad() {
+
     let urlArray = window.location.href.split('/');
     let path = urlArray[urlArray.length - 1];
 
@@ -75,10 +76,12 @@ function fetchToastrTheme(theme) {
 
 function callGetApi(api) {
     let url = apiRoute + api;
+    showLoadingScreen();
     return fetch(url, {
         method: 'GET',
         headers: fetchAPIHeaders(),
     }).then(response => {
+        hideLoadingScreen();
         let statusCode = response.status;
         if (statusCode != 200) {
             handleAPIStatusCodes(statusCode);
@@ -87,27 +90,31 @@ function callGetApi(api) {
     }).then(data => {
         return data;
     }).catch(function (response) {
-        addToast("Some error happened", "error");
+        hideLoadingScreen();
+        addToast("Sorry something went wrong.", "error");
         return false;
     });
 }
 
 function callPostApi(api, params) {
     let url = apiRoute + api;
+    showLoadingScreen();
     return fetch(url, {
         method: 'post',
         headers: fetchAPIHeaders(),
         body: JSON.stringify(params),
     }).then(response => {
-        let statusCode = response.status;
+        hideLoadingScreen();
+        let statusCode = response.
+            status;
         if (statusCode != 200) {
             handleAPIStatusCodes(statusCode);
         }
         return response.json();
     }).then(data => {
-        console.log(data)
         return data;
     }).catch(response => {
+        hideLoadingScreen();
         addToast("Some error happened", "error");
         return false;
     });
@@ -125,7 +132,6 @@ function fetchAPIHeaders() {
     if (localStorage.access_token) {
         headers.access_token = 'Bearer ' + localStorage.access_token;
     }
-    console.log(headers)
     return headers;
 }
 
@@ -148,4 +154,14 @@ function logout() {
             window.location = 'login.html';
         }
     });
+}
+
+function showLoadingScreen() {
+    const spinner = document.getElementById("spinner");
+    spinner.removeAttribute('hidden');
+}
+
+function hideLoadingScreen() {
+    const spinner = document.getElementById("spinner");
+    spinner.setAttribute('hidden', '');
 }
