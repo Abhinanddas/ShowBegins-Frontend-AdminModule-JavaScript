@@ -2,7 +2,7 @@ const apiRoute = 'http://127.0.0.1:8000/api/';
 
 document.addEventListener("load", onPageLoad());
 
-async function onPageLoad() {
+function onPageLoad() {
 
     let urlArray = window.location.href.split('/');
     let path = urlArray[urlArray.length - 1];

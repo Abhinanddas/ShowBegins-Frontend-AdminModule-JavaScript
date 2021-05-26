@@ -28,4 +28,8 @@
       transform: rotate(360deg);
     }
   }
-  
+
+  .selectOption{
+      color:white;
+      background-color: #1e1e24;
+  }
