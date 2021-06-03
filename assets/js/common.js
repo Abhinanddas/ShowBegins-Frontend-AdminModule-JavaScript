@@ -4,6 +4,9 @@ document.addEventListener("load", onPageLoad());
 
 function onPageLoad() {
 
+    htmlTemplating();
+    handleSideBarMenu();
+    addScripts();
     let urlArray = window.location.href.split('/');
     let path = urlArray[urlArray.length - 1];
 
@@ -164,4 +167,250 @@ function showLoadingScreen() {
 function hideLoadingScreen() {
     const spinner = document.getElementById("spinner");
     spinner.setAttribute('hidden', '');
+}
+
+function htmlTemplating() {
+
+    let headerContent = `
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <!-- Nucleo Icons -->
+        <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+        <!-- CSS Files -->
+        <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="../assets/css/demo.css" rel="stylesheet" />
+        <link href="../assets/css/toastr.css" rel="stylesheet" />
+        <link href="../assets/css/common.css" rel="stylesheet" />
+    `;
+
+    let footerContent = ` 
+            <div class="container-fluid">
+            <ul class="nav">
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link">
+                Creative Tim
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link">
+                About Us
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link">
+                Blog
+                </a>
+            </li>
+            </ul>
+            <div class="copyright">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>2018 made with <i class="tim-icons icon-heart-2"></i> by
+            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
+            </div>
+            </div>`
+        ;
+
+    let sideBarContent = `
+<div class="sidebar-wrapper">
+  <div class="logo">
+    <a href="javascript:void(0)" class="simple-text logo-mini">
+      CT
+    </a>
+    <a href="javascript:void(0)" class="simple-text logo-normal">
+      Creative Tim
+    </a>
+  </div>
+  <ul class="nav">
+    <li class="" id="sidebar-dashboard">
+      <a href="./dashboard.html">
+        <i class="tim-icons icon-chart-pie-36"></i>
+        <p>Dashboard</p>
+      </a>
+    </li>
+    <li id="sidebar-add-shows">
+      <a href="add-shows.html">
+        <i class="tim-icons icon-atom"></i>
+        <p>Add Shows</p>
+      </a>
+    </li>
+    <li>
+      <a href="./map.html">
+        <i class="tim-icons icon-pin"></i>
+        <p>Maps</p>
+      </a>
+    </li>
+    <li>
+      <a href="./notifications.html">
+        <i class="tim-icons icon-bell-55"></i>
+        <p>Notifications</p>
+      </a>
+    </li>
+    <li>
+      <a href="./user.html">
+        <i class="tim-icons icon-single-02"></i>
+        <p>User Profile</p>
+      </a>
+    </li>
+    <li>
+      <a href="./tables.html">
+        <i class="tim-icons icon-puzzle-10"></i>
+        <p>Table List</p>
+      </a>
+    </li>
+    <li>
+      <a href="./typography.html">
+        <i class="tim-icons icon-align-center"></i>
+        <p>Typography</p>
+      </a>
+    </li>
+    <li>
+      <a href="./rtl.html">
+        <i class="tim-icons icon-world"></i>
+        <p>RTL Support</p>
+      </a>
+    </li>
+    <li class="active-pro">
+      <a href="./upgrade.html">
+        <i class="tim-icons icon-spaceship"></i>
+        <p>Upgrade to PRO</p>
+      </a>
+    </li>
+  </ul>
+</div>
+  `;
+
+    let searchModalContent = `
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i class="tim-icons icon-simple-remove"></i>
+      </button>
+    </div>
+  </div>
+</div>
+  `;
+
+    let navbarContent = `
+  <div class="container-fluid">
+  <div class="navbar-wrapper">
+    <div class="navbar-toggle d-inline">
+      <button type="button" class="navbar-toggler">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </button>
+    </div>
+    <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-bar navbar-kebab"></span>
+    <span class="navbar-toggler-bar navbar-kebab"></span>
+    <span class="navbar-toggler-bar navbar-kebab"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navigation">
+    <ul class="navbar-nav ml-auto">
+      <li class="search-bar input-group">
+        <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i
+            class="tim-icons icon-zoom-split"></i>
+          <span class="d-lg-none d-md-block">Search</span>
+        </button>
+      </li>
+      <li class="dropdown nav-item">
+        <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+          <div class="notification d-none d-lg-block d-xl-block"></div>
+          <i class="tim-icons icon-sound-wave"></i>
+          <p class="d-lg-none">
+            Notifications
+          </p>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+          <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John responded to your email</a>
+          </li>
+          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more
+              tasks</a></li>
+          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Your friend Michael
+              is in town</a></li>
+          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another
+              notification</a></li>
+          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a></li>
+        </ul>
+      </li>
+      <li class="dropdown nav-item">
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+          <div class="photo">
+            <img src="../assets/img/anime3.png" alt="Profile Photo">
+          </div>
+          <b class="caret d-none d-lg-block d-xl-block"></b>
+          <p class="d-lg-none">
+            Log out
+          </p>
+        </a>
+        <ul class="dropdown-menu dropdown-navbar">
+          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a></li>
+          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
+          <li class="dropdown-divider"></li>
+          <li class="nav-link"><a class="nav-item dropdown-item" href='#' id="logout-button">Log out</a></li>
+        </ul>
+      </li>
+      <li class="separator d-lg-none"></li>
+    </ul>
+  </div>
+</div>
+  `;
+
+    document.head.innerHTML = document.head.innerHTML + headerContent;
+    document.querySelector('footer').innerHTML = footerContent;
+    document.getElementById('sidebar').innerHTML = sideBarContent;
+    document.getElementById('searchModal').innerHTML = searchModalContent;
+    document.getElementById('navbar').innerHTML = navbarContent;
+
+}
+
+function handleSideBarMenu() {
+    let urlArray = window.location.href.split('/');
+
+    var sideBar = {
+        'dashboard.html': 'sidebar-dashboard',
+        'add-shows.html': 'sidebar-add-shows',
+    };
+
+    for (let key in sideBar) {
+        if (urlArray.includes(key)) {
+            document.getElementById(sideBar[key]).className += 'active';
+        }
+    }
+}
+
+function addScripts() {
+
+
+    let scriptUrls = [
+        "../assets/js/core/popper.min.js",
+        "../assets/js/core/bootstrap.min.js",
+        "../assets/js/plugins/perfect-scrollbar.jquery.min.js",
+        "../assets/js/plugins/chartjs.min.js",
+        "../assets/js/plugins/bootstrap-notify.js",
+        "../assets/js/black-dashboard.min.js?v=1.0.0",
+        "../assets/js/toastr.js",
+    ];
+
+    for (let url in scriptUrls) {
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = scriptUrls[url];
+        document.body.appendChild(script);
+
+    }
+
 }
