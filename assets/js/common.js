@@ -187,6 +187,7 @@ function htmlTemplating() {
         <link href="../assets/css/demo.css" rel="stylesheet" />
         <link href="../assets/css/toastr.css" rel="stylesheet" />
         <link href="../assets/css/common.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../assets/css/style.css" />
     `;
 
     let footerContent = ` 

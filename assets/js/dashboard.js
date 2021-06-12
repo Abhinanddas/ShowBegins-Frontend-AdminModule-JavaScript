@@ -59,11 +59,11 @@ function addScreenDiv(movieId, screenId, screenName) {
 
 function addShowDiv(movieId, screenId, showId, showTime) {
     let div = `
-        <button type="" class="btn btn-fill btn-primary" onClick="showButtonClick(${showId})" data-show-id="${showId}">${showTime}</button>
+        <button type="" class="btn btn-fill btn-primary" onClick="showButtonClick(${showId},${movieId},${screenId})" data-show-id="${showId}">${showTime}</button>
     `;
     document.getElementById(`screen-div-${movieId}-${screenId}`).innerHTML += div;
 }
 
-function showButtonClick(showId) {
-    window.location = 'booking_page.html' + '?showId=' + showId;
+function showButtonClick(showId, movieId, screenId) {
+    window.location = 'booking_page.html' + '?showId=' + showId + '&screenId=' + screenId + '&movieId=' + movieId;
 }
