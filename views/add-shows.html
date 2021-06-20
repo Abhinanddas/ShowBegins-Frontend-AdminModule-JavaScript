@@ -1,70 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>
-        Add Shows
-    </title>
-</head>
-<body class="">
+  <head>
+    <title>Add Shows</title>
+  </head>
+  <body class="">
     <div class="wrapper">
-        <div class="sidebar" id="sidebar"></div>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" id="navbar"></nav>
-            <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog"
-                aria-labelledby="searchModal" aria-hidden="true" id="searchModal"></div>
-            <!-- End Navbar -->
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="title">Add Shows</h5>
-                            </div>
-                            <div class="card-body all-icons">
-                                <div class="row">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form id="add-show-form">
-                                                <div class="row">
-                                                    <div class="form-group col-md-3 col">
-                                                        <label for="movies">Movie</label>
-                                                        <select id="movies1" class="form-control" name="movies[]"
-                                                            required>
-                                                            <option class="selectOption">Select Movie...</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-3 col">
-                                                        <label for="screens">Screen</label>
-                                                        <select id="screens1" class="form-control" multiple required
-                                                            name="screens[]">
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-3 col">
-                                                        <label for="date">Date</label>
-                                                        <input type="date" id="date1" name="dates[]">
-                                                    </div>
-                                                    <div class="form-group col-md-3 col">
-                                                        <label for="time">Time</label>
-                                                        <select id="time1" class="form-control" multiple required
-                                                            name="time[]">
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary float-right"
-                                                    id="sumbit-add-show">Submit</button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div class="sidebar" id="sidebar"></div>
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav
+          class="navbar navbar-expand-lg navbar-absolute navbar-transparent"
+          id="navbar"
+        ></nav>
+        <div
+          class="modal modal-search fade"
+          id="searchModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="searchModal"
+          aria-hidden="true"
+          id="searchModal"
+        ></div>
+        <!-- End Navbar -->
+        <div class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="title">Add Shows</h5>
                 </div>
+                <div class="card-body all-icons">
+                  <div class="row">
+                    <div class="card">
+                      <div class="card-body">
+                        <form id="add-show-form">
+                          <div class="row">
+                            <div class="form-group col-md-3 col">
+                              <label for="movies">Movie</label>
+                              <select
+                                id="movies1"
+                                class="form-control"
+                                name="movies[]"
+                                required
+                              >
+                                <option class="selectOption">
+                                  Select Movie...
+                                </option>
+                              </select>
+                            </div>
+                            <div class="form-group col-md-3 col">
+                              <label for="screens">Screen</label>
+                              <select
+                                id="screens1"
+                                class="form-control"
+                                multiple
+                                required
+                                name="screens[]"
+                              ></select>
+                            </div>
+                            <div class="form-group col-md-3 col">
+                              <label for="date">Date</label>
+                              <input
+                                type="date"
+                                id="date1"
+                                name="dates[]"
+                                class="form-control"
+                              />
+                            </div>
+                            <div class="form-group col-md-3 col">
+                              <label for="time">Time</label>
+                              <select
+                                id="time1"
+                                class="form-control"
+                                multiple
+                                required
+                                name="time[]"
+                              ></select>
+                            </div>
+                          </div>
+                          <button
+                            type="submit"
+                            class="btn btn-primary float-right"
+                            id="sumbit-add-show"
+                          >
+                            Submit
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="card card-plain">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table tablesorter" id="">
+                        <thead class="text-primary">
+                          <tr>
+                            <th>Movie</th>
+                            <th>Screen</th>
+                            <th>Date</th>
+                            <th>Show Time</th>
+                          </tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <footer class="footer"></footer>
+          </div>
         </div>
+        <footer class="footer"></footer>
+      </div>
     </div>
     <div hidden id="spinner"></div>
     <div id="scripts"></div>
@@ -72,5 +122,5 @@
     <script src="../assets/js/core/jquery.min.js"></script>
     <script defer src="../assets/js/common.js"></script>
     <script defer src="../assets/js/add-shows.js"></script>
-</body>
+  </body>
 </html>

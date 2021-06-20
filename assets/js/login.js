@@ -33,6 +33,8 @@ function handleLoginSuccess(data) {
     localStorage.setItem('access_token', data.access_token);
     localStorage.setItem('refresh_token', data.refresh_token);
     localStorage.setItem('user_data', JSON.stringify(data.user_data));
+    let date = new Date(data.token_expires_at.date);
+    localStorage.setItem('token_expires_at', date);
     window.location = 'dashboard.html';
 }
 

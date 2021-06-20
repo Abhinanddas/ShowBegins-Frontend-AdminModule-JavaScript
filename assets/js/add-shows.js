@@ -7,12 +7,13 @@ document.getElementById('sumbit-add-show').addEventListener('click', submitAddSh
 function onPageLoad() {
 
     makeTimeOptions(1);
-    callPostApi('list-active-movies').then((response) => {
+    loadShowsTable();
+    callGetApi('movies').then((response) => {
         movies = response.data;
         makeMovieOptions(1);
     });
 
-    callPostApi('list-all-screens').then((response) => {
+    callGetApi('screens').then((response) => {
         screens = response.data;
         makeScreenOptions(1);
     });
@@ -64,6 +65,7 @@ function submitAddShowForm(e) {
     callPostApi('add-show', params).then((response) => {
         addToast(response.msg,response.status);
     })
+    loadShowsTable();
 }
 
 function makeFormData() {
@@ -94,3 +96,18 @@ function getSelectedValues(selectedOptions) {
     });
     return selectedValues;
 }
+
+function loadShowsTable() {
+    let movieTableHtml = "";
+    callGetApi("shows").then((response) => {
+      response.data.forEach(function (data) {
+        movieTableHtml += `
+              <tr>
+              <td>${data.movie_name}</td>
+              <td>${data.language??''}</td>
+              <td>${data.rating??''}</td>
+              `;
+      });
+      document.getElementById("table-body").innerHTML = movieTableHtml;
+    });
+  }

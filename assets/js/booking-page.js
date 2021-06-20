@@ -94,7 +94,6 @@ function promptTicketConfirm(amount, numOfTickets) {
     confirmText: "Okay",
     cancelText: "Cancel"
   }).then((e) => {
-    console.log(e)
     if (e == ("confirm")) {
       purchaseTicket();
     } 
@@ -128,12 +127,14 @@ function getShowDetails() {
   callGetApi('show-details' + '?showId=' + showId).then((response) => {
 
     let data = response.data;
+    let showTime = new Date(response.data.show_time); 
     let div = ` <div class="col-12">
             <div class="card card-chart">
               <div class="card-header ">
                 <div class="row">
                   <div class="col-sm-6 text-left">
-                    <h4 class="card-title">${data.movie_name}  &nbsp ${data.screen_name}</h4>
+                    <h4>${data.movie_name}  &nbsp| ${data.screen_name} &nbsp| ${showTime.toLocaleTimeString().slice(0,5)}</h4>
+                    <h4>${data.movie_name}  &nbsp| ${data.screen_name} &nbsp| ${showTime.toLocaleTimeString().slice(0,5)}</h4>
                   </div>
                   </div>
               </div>
