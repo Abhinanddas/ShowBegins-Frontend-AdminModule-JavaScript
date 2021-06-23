@@ -1,0 +1,4 @@
+#card-description{
+    max-height: 50vh;
+    overflow-x: scroll;
+}

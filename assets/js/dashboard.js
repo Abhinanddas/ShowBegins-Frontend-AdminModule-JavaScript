@@ -1,7 +1,7 @@
 document.addEventListener('load', onPageLoad());
 
 function onPageLoad() {
-    callPostApi('list-active-shows').then(response => {
+    callGetApi('dashboard/shows').then(response => {
         if (response.status === 'success') {
             makeBookingScreen(response.data);
         }
@@ -53,6 +53,7 @@ function addScreenDiv(movieId, screenId, screenName) {
     <h4 class="card-title">${screenName}</h2>
     <div id="screen-div-${movieId}-${screenId}"></div>
   </div>
+  <br>
     `;
     document.getElementById('movie-div-' + movieId).innerHTML += div;
 }

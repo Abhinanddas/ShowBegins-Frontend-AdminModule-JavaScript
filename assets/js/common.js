@@ -6,6 +6,7 @@ function onPageLoad() {
   htmlTemplating();
   handleSideBarMenu();
   addScripts();
+  checkTokenExpiration();
   setInterval(checkTokenExpiration, 60000);
   let urlArray = window.location.href.split("/");
   let path = urlArray[urlArray.length - 1];
@@ -246,7 +247,7 @@ function htmlTemplating() {
     <li id="sidebar-add-shows">
       <a href="add-shows.html">
         <i class="tim-icons icon-atom"></i>
-        <p>Add Shows</p>
+        <p>Shows</p>
       </a>
     </li>
     <li>
@@ -422,27 +423,25 @@ function checkTokenExpiration() {
   let tokexExpiresAt = new Date(localStorage.token_expires_at);
   let now = new Date();
 
-  let timeDiffInSeconds = Math.abs(tokexExpiresAt - now) / 1000;
-
+  let timeDiffInSeconds = (tokexExpiresAt - now) / 1000;
   if (timeDiffInSeconds < 0) {
     logout();
     return;
   }
 
-  if(timeDiffInSeconds < 3600){
+  if (timeDiffInSeconds < 3600) {
     refreshAccessToken();
   }
-
 }
 
-function refreshAccessToken(){
+function refreshAccessToken() {
   let params = {
-    'refresh_token':localStorage.refresh_token,
+    refresh_token: localStorage.refresh_token,
   };
-  callPostApi('get-referesh-token', params).then(response=>{
-    localStorage.setItem('access_token', response.data.access_token);
-    localStorage.setItem('refresh_token', response.data.refresh_token);
+  callPostApi("get-referesh-token", params).then((response) => {
+    localStorage.setItem("access_token", response.data.access_token);
+    localStorage.setItem("refresh_token", response.data.refresh_token);
     let date = new Date(response.data.token_expires_at.date);
-    localStorage.setItem('token_expires_at', date);
-  })
+    localStorage.setItem("token_expires_at", date);
+  });
 }
