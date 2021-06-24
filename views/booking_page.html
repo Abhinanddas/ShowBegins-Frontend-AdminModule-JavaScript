@@ -197,61 +197,64 @@
                         </div>
                     </div>
                 </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="col-lg-12 ml-auto mr-auto button-section">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button class="btn btn-danger btn-block" onclick="cancelSelection()">Cancel</button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-info btn-block" onclick="checkPrice()">Calculate</button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-success btn-block" onclick="bookTickets()">Book
-                                    Tickets</button>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-lg-12 ml-auto mr-auto button-section">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-danger btn-block" onclick="cancelSelection()">Cancel</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-info btn-block" onclick="checkPrice()">Calculate</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-success btn-block" onclick="bookTickets()">Book
+                                        Tickets</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 purchase-history-div">
-                    <div class="card card-user">
-                        <div class="card-body">
-                            <p class="card-text">
-                            </p>
-                            <div class="author">
-                                <div class="block block-one"></div>
-                                <div class="block block-two"></div>
-                                <div class="block block-three"></div>
-                                <div class="block block-four"></div>
-                                <p class="description">
-                                    Purchases:
+                    <div class="col-md-4 purchase-history-div">
+                        <div class="card card-user">
+                            <div class="card-body">
+                                <p class="card-text">
                                 </p>
-                            </div>
-                            <p></p>
-                            <div class="card-description" id="card-description-purchase-table">
-                                <table class="table tablesorter">
-                                    <thead class=" text-primary">
-                                      <tr>
-                                        <th>
-                                          No of seats
-                                        </th>
-                                        <th>
-                                          Amount
-                                        </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody id="purchase-table-body">
-                                    </tbody>
-                                  </table>
+                                <div class="author">
+                                    <div class="block block-one"></div>
+                                    <div class="block block-two"></div>
+                                    <div class="block block-three"></div>
+                                    <div class="block block-four"></div>
+                                    <p class="description">
+                                        Purchases:
+                                    </p>
+                                </div>
+                                <p></p>
+                                <div class="card-description" id="card-description-purchase-table">
+                                    <table class="table tablesorter">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th>
+                                                    No of seats
+                                                </th>
+                                                <th>
+                                                    Amount
+                                                </th>
+                                                <th>
+                                                    Seats
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="purchase-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <footer class="footer"></footer>
         </div>
-        <footer class="footer"></footer>
-    </div>
     </div>
     <div hidden id="spinner"></div>
     <script defer src="../assets/js/common.js"></script>

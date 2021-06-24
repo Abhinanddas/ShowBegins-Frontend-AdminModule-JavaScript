@@ -123,6 +123,7 @@ function purchaseTicket() {
     });
     makeSeats();
     loadPurchaseHistory();
+    getShowDetails();
   });
 }
 
@@ -143,7 +144,7 @@ function getShowDetails() {
               </div>
             </div>
           </div>`;
-    document.getElementById("show-info").innerHTML += div;
+    document.getElementById("show-info").innerHTML = div;
   });
 }
 
@@ -155,6 +156,7 @@ function loadPurchaseHistory() {
             <tr>
             <td>${data.num_of_tickets}</td>
             <td>${data.amount ?? ""}</td>
+            <td class="max-width-20-px">${data.seats}</td>
             `;
     });
     document.getElementById("purchase-table-body").innerHTML = tableHtml;

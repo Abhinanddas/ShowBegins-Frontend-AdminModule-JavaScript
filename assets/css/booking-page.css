@@ -157,3 +157,7 @@
     max-height: 50vh;
     overflow-x: scroll;
 }
+
+.max-width-20-px{
+    max-width: 20px;
+}

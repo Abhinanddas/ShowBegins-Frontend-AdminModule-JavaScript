@@ -21,7 +21,8 @@ function makeBookingScreen(response) {
             screen.shows.forEach((show) => {
                 let showId = show.show_id;
                 let showTime = show.show_time;
-                addShowDiv(movieId, screenId, showId, showTime);
+                let bookingStatus = show.status
+                addShowDiv(movieId, screenId, showId, showTime, bookingStatus);
             });
         });
     });
@@ -49,8 +50,8 @@ function addMovieDiv(movieId, movieName) {
 function addScreenDiv(movieId, screenId, screenName) {
 
     let div = `
-    <div class="col-sm-12">
-    <h4 class="card-title">${screenName}</h2>
+     <div class="col-md-12">
+    <h4 class="card-title">${screenName}</h4>
     <div id="screen-div-${movieId}-${screenId}"></div>
   </div>
   <br>
@@ -58,13 +59,43 @@ function addScreenDiv(movieId, screenId, screenName) {
     document.getElementById('movie-div-' + movieId).innerHTML += div;
 }
 
-function addShowDiv(movieId, screenId, showId, showTime) {
+function addShowDiv(movieId, screenId, showId, showTime, bookingStatus) {
+    let buttonClass = fetchBookingButtonStatus(bookingStatus);
     let div = `
-        <button type="" class="btn btn-fill btn-primary" onClick="showButtonClick(${showId},${movieId},${screenId})" data-show-id="${showId}">${showTime}</button>
+        <button type="" class="btn btn-fill ${buttonClass}" onClick="showButtonClick(${showId},${movieId},${screenId})" data-show-id="${showId}">${showTime}</button>
     `;
     document.getElementById(`screen-div-${movieId}-${screenId}`).innerHTML += div;
 }
 
 function showButtonClick(showId, movieId, screenId) {
     window.location = 'booking_page.html' + '?showId=' + showId + '&screenId=' + screenId + '&movieId=' + movieId;
+}
+
+function fetchBookingButtonStatus(bookingStatus){
+
+    if(bookingStatus == 'A'){
+        return 'btn-danger';
+    }
+
+    if(bookingStatus == 'B'){
+        return 'btn-warning';
+    }
+
+    if(bookingStatus=='C'){
+        return 'btn-info';
+    }
+
+    if(bookingStatus == 'D'){
+        return 'btn-success';
+    }
+
+    if(bookingStatus == 'E'){
+        return 'btn-primary';
+    }
+
+    if(bookingStatus == 'F'){
+        return '';
+    }
+
+    return '';
 }
