@@ -1,4 +1,5 @@
 const apiRoute = "http://127.0.0.1:8000/api/";
+let restrictedUrls = ["login.html", "signup.html"];
 
 document.addEventListener("load", onPageLoad());
 
@@ -11,7 +12,6 @@ function onPageLoad() {
   let urlArray = window.location.href.split("/");
   let path = urlArray[urlArray.length - 1];
 
-  let restrictedUrls = ["login.html", "signup.html"];
 
   let accessToken = localStorage.access_token;
   if (accessToken) {
@@ -40,6 +40,13 @@ function validateForm(formElements) {
   return isFormValid;
 }
 
+function clearForm(formElements) {
+  for (let i = 0; i < formElements.length - 1; i++) {
+    formElements[i].value = '';
+  }
+  return;
+}
+
 function addToast(
   content = "",
   theme = "moon",
@@ -61,7 +68,7 @@ function addToast(
 // moon, sun, ocean, grassland, rainbow
 function fetchToastrTheme(theme) {
   if (theme === "success") {
-    theme = "basic";
+    theme = "granddland";
     return theme;
   }
 
@@ -134,6 +141,32 @@ function callPostApi(api, params) {
     });
 }
 
+function callDeleteApi(api, id) {
+  let url = apiRoute + api + '/' + id;
+  showLoadingScreen();
+  return fetch(url, {
+    method: "delete",
+    headers: fetchAPIHeaders(),
+  })
+    .then((response) => {
+      hideLoadingScreen();
+      let statusCode = response.status;
+      if (statusCode != 200) {
+        handleAPIStatusCodes(statusCode);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((response) => {
+      hideLoadingScreen();
+      addToast("Some error happened", "error");
+      return false;
+    });
+}
+
+
 function fetchAPIHeaders() {
   let headers = {
     "Content-Type": "application/json",
@@ -149,12 +182,17 @@ function fetchAPIHeaders() {
 }
 
 function handleAPIStatusCodes(statusCode) {
+
+  if (statusCode == '204') {
+    addToast('Content not found', 'error');
+    return;
+  }
   addToast("Some error happened", "error");
 }
 
 let urlArray = window.location.href.split("/");
 let path = urlArray[urlArray.length - 1];
-if (path != "login.html") {
+if (!restrictedUrls.includes(path)) {
   document.getElementById("logout-button").addEventListener("click", logout);
 }
 
@@ -198,6 +236,7 @@ function htmlTemplating() {
         <link href="../assets/css/toastr.css" rel="stylesheet" />
         <link href="../assets/css/common.css" rel="stylesheet" />
         <link rel="stylesheet" href="../assets/css/style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     `;
 
   let footerContent = ` 
@@ -205,36 +244,31 @@ function htmlTemplating() {
             <ul class="nav">
             <li class="nav-item">
                 <a href="javascript:void(0)" class="nav-link">
-                Creative Tim
                 </a>
             </li>
             <li class="nav-item">
                 <a href="javascript:void(0)" class="nav-link">
-                About Us
                 </a>
             </li>
             <li class="nav-item">
                 <a href="javascript:void(0)" class="nav-link">
-                Blog
                 </a>
             </li>
             </ul>
             <div class="copyright">
-            ©
             <script>
                 document.write(new Date().getFullYear())
-            </script>2018 made with <i class="tim-icons icon-heart-2"></i> by
-            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
+            </script>
             </div>
             </div>`;
   let sideBarContent = `
 <div class="sidebar-wrapper">
   <div class="logo">
     <a href="javascript:void(0)" class="simple-text logo-mini">
-      CT
+      SB
     </a>
     <a href="javascript:void(0)" class="simple-text logo-normal">
-      Creative Tim
+      Show Begins
     </a>
   </div>
   <ul class="nav">
@@ -246,50 +280,20 @@ function htmlTemplating() {
     </li>
     <li id="sidebar-add-shows">
       <a href="add-shows.html">
-        <i class="tim-icons icon-atom"></i>
+        <i class="tim-icons icon-time-alarm"></i>
         <p>Shows</p>
       </a>
     </li>
     <li>
       <a href="movies.html">
-        <i class="tim-icons icon-pin"></i>
+        <i class="tim-icons icon-video-66"></i>
         <p>Movies</p>
       </a>
     </li>
     <li>
       <a href="./screens.html">
-        <i class="tim-icons icon-bell-55"></i>
+        <i class="tim-icons icon-tv-2"></i>
         <p>Screens</p>
-      </a>
-    </li>
-    <li>
-      <a href="./user.html">
-        <i class="tim-icons icon-single-02"></i>
-        <p>User Profile</p>
-      </a>
-    </li>
-    <li>
-      <a href="./tables.html">
-        <i class="tim-icons icon-puzzle-10"></i>
-        <p>Table List</p>
-      </a>
-    </li>
-    <li>
-      <a href="./typography.html">
-        <i class="tim-icons icon-align-center"></i>
-        <p>Typography</p>
-      </a>
-    </li>
-    <li>
-      <a href="./rtl.html">
-        <i class="tim-icons icon-world"></i>
-        <p>RTL Support</p>
-      </a>
-    </li>
-    <li class="active-pro">
-      <a href="./upgrade.html">
-        <i class="tim-icons icon-spaceship"></i>
-        <p>Upgrade to PRO</p>
       </a>
     </li>
   </ul>
@@ -343,17 +347,7 @@ function htmlTemplating() {
             Notifications
           </p>
         </a>
-        <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-          <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John responded to your email</a>
-          </li>
-          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more
-              tasks</a></li>
-          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Your friend Michael
-              is in town</a></li>
-          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another
-              notification</a></li>
-          <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a></li>
-        </ul>
+       
       </li>
       <li class="dropdown nav-item">
         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -379,10 +373,18 @@ function htmlTemplating() {
   `;
 
   document.head.innerHTML = document.head.innerHTML + headerContent;
-  document.querySelector("footer").innerHTML = footerContent;
-  document.getElementById("sidebar").innerHTML = sideBarContent;
-  document.getElementById("searchModal").innerHTML = searchModalContent;
-  document.getElementById("navbar").innerHTML = navbarContent;
+  if (document.querySelector("footer")) {
+    document.querySelector("footer").innerHTML = footerContent;
+  }
+  if (document.getElementById("sidebar")) {
+    document.getElementById("sidebar").innerHTML = sideBarContent;
+  }
+  if (document.getElementById("searchModal")) {
+    document.getElementById("searchModal").innerHTML = searchModalContent;
+  }
+  if (document.getElementById("navbar")) {
+    document.getElementById("navbar").innerHTML = navbarContent;
+  }
 }
 
 function handleSideBarMenu() {

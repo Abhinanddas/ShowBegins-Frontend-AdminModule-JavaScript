@@ -33,3 +33,7 @@
       color:white;
       background-color: #1e1e24;
   }
+
+  .hidden{
+    display: none;
+  }

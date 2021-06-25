@@ -1,84 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>
-        Screens
-    </title>
+  <title>
+    Screens
+  </title>
 </head>
+
 <body class="">
-    <div class="wrapper">
-        <div class="sidebar" id="sidebar"></div>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" id="navbar"></nav>
-            <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog"
-                aria-labelledby="searchModal" aria-hidden="true" id="searchModal"></div>
-            <!-- End Navbar -->
-            <div class="content">
+  <div class="wrapper">
+    <div class="sidebar" id="sidebar"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" id="navbar"></nav>
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+        aria-hidden="true" id="searchModal"></div>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Screens</h5>
+              </div>
+              <div class="card-body all-icons">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="title">Screens</h5>
-                            </div>
-                            <div class="card-body all-icons">
-                                <div class="row">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form id="add-screen-form">
-                                                <div class="row">
-                                                    <div class="form-group col-md-3 col">
-                                                        <label>Screen</label>
-                                                        <input class="form-control" type="text" name="name" required placeholder="Enter screen name" id="name">
-                                                    </div>
-                                                    <div class="form-group col-md-3 col">
-                                                        <label>Number of seats</label>
-                                                        <input class="form-control" type="number" name="language" required min="1"  id="seating_capacity">
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary float-right"
-                                                    id="sumbit-add-screen">Submit</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card  card-plain">
-                          <div class="card-body">
-                            <div class="table-responsive">
-                              <table class="table tablesorter " id="">
-                                <thead class=" text-primary">
-                                  <tr>
-                                    <th>
-                                      Name
-                                    </th>
-                                    <th>
-                                      Seating Capacity
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody id="screen-table-body">
-                                </tbody>
-                              </table>
-                            </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <form id="add-screen-form">
+                        <div class="row">
+                          <div class="form-group col-md-3 col">
+                            <label>Screen</label>
+                            <input class="form-control" type="text" name="name" required placeholder="Enter screen name"
+                              id="name">
+                          </div>
+                          <div class="form-group col-md-3 col">
+                            <label>Number of seats</label>
+                            <input class="form-control" type="number" name="language" required min="1"
+                              id="seating_capacity">
                           </div>
                         </div>
-                      </div>
+                        <button type="submit" class="btn btn-primary float-right" id="sumbit-add-screen">Submit</button>
+                        <button type="submit" class="btn btn-primary float-right hidden" id="sumbit-update-screen">Update</button>
+                      </form>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
-            <footer class="footer"></footer>
+          </div>
+          <div class="col-md-12">
+            <div class="card  card-plain">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Seating Capacity
+                        </th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="screen-table-body">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div hidden id="spinner"></div>
-    <div id="scripts"></div>
-    <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script defer src="../assets/js/common.js"></script>
-    <script defer src="../assets/js/screens.js"></script>
+  </div>
+  <footer class="footer"></footer>
+  </div>
+  </div>
+  <div hidden id="spinner"></div>
+  <div id="scripts"></div>
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/screens.js"></script>
+  <script src="../assets/js/cute-alert.js"></script>
 </body>
+
 </html>

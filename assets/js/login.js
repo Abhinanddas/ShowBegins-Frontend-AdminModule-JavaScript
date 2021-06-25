@@ -1,4 +1,6 @@
-document.getElementById("login-form-submit").addEventListener("click", sumbitLoginForm);
+if(document.getElementById("login-form-submit")){
+    document.getElementById("login-form-submit").addEventListener("click", sumbitLoginForm);
+}
 
 function sumbitLoginForm(e) {
 
