@@ -88,14 +88,6 @@ function makeFormData() {
   return formData;
 }
 
-function getSelectedValues(selectedOptions) {
-  let selectedValues = [];
-  Array.from(selectedOptions).forEach((option) => {
-    selectedValues.push(option.value);
-  });
-  return selectedValues;
-}
-
 function loadShowsTable() {
   let showTable = "";
   callGetApi("shows").then((response) => {

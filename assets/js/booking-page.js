@@ -129,7 +129,7 @@ function purchaseTicket() {
 
 function getShowDetails() {
 
-  callGetApi('show-details/' +showId).then((response) => {
+  callGetApi('show/' +showId).then((response) => {
 
     let data = response.data;
     let div = ` <div class="col-12">

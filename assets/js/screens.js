@@ -19,8 +19,8 @@ function loadScreenTable() {
             <td>${screen.name}</td>
             <td>${screen.seating_capacity ?? ''}</td>
             <td>
-            <i class="tim-icons icon-pencil" onclick="edit(${screen.id})" id="screen-${screen.id}" data-name="${screen.name}"></i>/
-            <i class="tim-icons icon-trash-simple" onclick="remove(${screen.id})" id="screen-${screen.id}" data-name="${screen.name}"></i>
+            <i class="tim-icons icon-pencil pointer" onclick="edit(${screen.id})" id="screen-${screen.id}" data-name="${screen.name}"></i>/
+            <i class="tim-icons icon-trash-simple pointer" onclick="remove(${screen.id})" id="screen-${screen.id}" data-name="${screen.name}"></i>
             </td>
             `;
     });
@@ -107,6 +107,7 @@ function makeUpdateForm(data) {
 }
 
 function submitUpdateForm(e) {
+  
   e.preventDefault();
   let form = this.closest("form");
   let formElements = form.elements;
@@ -116,14 +117,19 @@ function submitUpdateForm(e) {
     addToast("Please submit valid input!", "error");
     return;
   }
+  
   let params = makeFormData();
-  params.id = document.getElementById('sumbit-update-screen').getAttribute('data-id');
-  callPostApi("screens", params).then((response) => {
+  let id = document.getElementById('sumbit-update-screen').getAttribute('data-id');
+  params.id = id;
+  
+  callPutApi("screen/" + id, params).then((response) => {
     addToast(response.msg, response.status);
-    loadScreenTable();
-    clearForm(form);
-    document.getElementById('sumbit-update-screen').classList.add('hidden');
-    document.getElementById('sumbit-add-screen').classList.remove('hidden');
-    document.getElementById('sumbit-update-screen').removeAttribute('data-id');
+    if (response.status === 'success') {
+      loadScreenTable();
+      clearForm(form);
+      document.getElementById('sumbit-update-screen').classList.add('hidden');
+      document.getElementById('sumbit-add-screen').classList.remove('hidden');
+      document.getElementById('sumbit-update-screen').removeAttribute('data-id');
+    }
   });
 }

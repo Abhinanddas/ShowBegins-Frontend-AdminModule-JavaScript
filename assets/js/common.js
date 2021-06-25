@@ -101,7 +101,7 @@ function callGetApi(api) {
       hideLoadingScreen();
       let statusCode = response.status;
       if (statusCode != 200) {
-        handleAPIStatusCodes(statusCode);
+        handleAPIStatusCodes(statusCode, response.msg);
       }
       return response.json();
     })
@@ -127,7 +127,7 @@ function callPostApi(api, params) {
       hideLoadingScreen();
       let statusCode = response.status;
       if (statusCode != 200) {
-        handleAPIStatusCodes(statusCode);
+        handleAPIStatusCodes(statusCode, response.msg);
       }
       return response.json();
     })
@@ -152,7 +152,7 @@ function callDeleteApi(api, id) {
       hideLoadingScreen();
       let statusCode = response.status;
       if (statusCode != 200) {
-        handleAPIStatusCodes(statusCode);
+        handleAPIStatusCodes(statusCode, response.msg);
       }
       return response.json();
     })
@@ -166,6 +166,31 @@ function callDeleteApi(api, id) {
     });
 }
 
+function callPutApi(api, params) {
+  let url = apiRoute + api;
+  showLoadingScreen();
+  return fetch(url, {
+    method: "put",
+    headers: fetchAPIHeaders(),
+    body: JSON.stringify(params),
+  })
+    .then((response) => {
+      hideLoadingScreen();
+      let statusCode = response.status;
+      if (statusCode != 200) {
+        handleAPIStatusCodes(statusCode, response.msg);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((response) => {
+      hideLoadingScreen();
+      addToast("Some error happened", "error");
+      return false;
+    });
+}
 
 function fetchAPIHeaders() {
   let headers = {
@@ -181,11 +206,15 @@ function fetchAPIHeaders() {
   return headers;
 }
 
-function handleAPIStatusCodes(statusCode) {
+function handleAPIStatusCodes(statusCode, msg) {
 
-  if (statusCode == '204') {
+  if (statusCode === '204') {
     addToast('Content not found', 'error');
     return;
+  }
+
+  if (statusCode === '201') {
+    addToast(msg, 'success');
   }
   addToast("Some error happened", "error");
 }
@@ -294,6 +323,12 @@ function htmlTemplating() {
       <a href="./screens.html">
         <i class="tim-icons icon-tv-2"></i>
         <p>Screens</p>
+      </a>
+    </li>
+    <li>
+      <a href="./pricing.html">
+        <i class="tim-icons icon-money-coins"></i>
+        <p>Pricing</p>
       </a>
     </li>
   </ul>
@@ -447,3 +482,17 @@ function refreshAccessToken() {
     localStorage.setItem("token_expires_at", date);
   });
 }
+
+/**
+ * function to return an array of values of selcted options 
+ * @param {*} selectedOptions 
+ * @returns 
+ */
+function getSelectedValues(selectedOptions) {
+  let selectedValues = [];
+  Array.from(selectedOptions).forEach((option) => {
+    selectedValues.push(option.value);
+  });
+  return selectedValues;
+}
+

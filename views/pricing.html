@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        Pricing
+    </title>
+</head>
+
+<body class="">
+    <div class="wrapper">
+        <div class="sidebar" id="sidebar"></div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" id="navbar"></nav>
+            <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog"
+                aria-labelledby="searchModal" aria-hidden="true" id="searchModal"></div>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="title">Pricing</h5>
+                            </div>
+                            <div class="card-body all-icons">
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form id="add-movies-form">
+                                                <div class="row">
+                                                    <div class="form-group col-md-3 col">
+                                                        <label for="movies">Name</label>
+                                                        <input class="form-control" type="text" name="name" required
+                                                            placeholder="Enter price label" id="name">
+                                                    </div>
+                                                    <div class="form-group col-md-3 col">
+                                                        <label>Value</label>
+                                                        <input class="form-control" type="number" step="0.1" min="0.1"
+                                                            name="value" required placeholder="Enter value" id="value">
+                                                    </div>
+                                                    <div class="form-group col-md-1 col">
+                                                        <label>Value In %</label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            name="is-percentage" id="is-percentage">
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary float-right"
+                                                    id="sumbit-add-pricing">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card  card-plain">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table tablesorter">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Value
+                                                </th>
+                                                <th>
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="pricing-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="title">Price Package</h5>
+                            </div>
+                            <div class="card-body all-icons">
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form id="add-movies-form">
+                                                <div class="row">
+                                                    <div class="form-group col-md-3 col">
+                                                        <label for="movies">Name</label>
+                                                        <input class="form-control" type="text" name="price-package-name" required
+                                                            placeholder="Enter price package label" id="price-package-name">
+                                                    </div>
+                                                    <div class="form-group col-md-3 col">
+                                                        <label>Base Charges</label>
+                                                        <select id="base-charges" class="form-control" multiple required name="base-charges"></select>
+                                                    </div>
+                                                    <div class="form-group col-md-3 col">
+                                                        <label>Other Charges</label>
+                                                        <select id="other-charges" class="form-control" multiple required name="other-charges"></select>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary float-right"
+                                                    id="sumbit-pricing-package">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card  card-plain">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table tablesorter">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Base Charges
+                                                </th>
+                                                <th>
+                                                    Other Charges
+                                                </th>
+                                                <th>
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="pricing-package-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer"></footer>
+    </div>
+    </div>
+    <div hidden id="spinner"></div>
+    <div id="scripts"></div>
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script defer src="../assets/js/common.js"></script>
+    <script defer src="../assets/js/pricing.js"></script>
+</body>
+
+</html>
