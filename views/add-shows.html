@@ -36,11 +36,15 @@
                               </option>
                             </select>
                           </div>
-                          <div class="form-group col-md-3 col">
+                          <div class="form-group col-md-2 col">
                             <label for="screens">Screen</label>
                             <select id="screens1" class="form-control" multiple required name="screens[]"></select>
                           </div>
-                          <div class="form-group col-md-3 col">
+                          <div class="form-group col-md-2 col">
+                            <label>Price Package</label>
+                            <select id="price-package1" class="form-control"  required name="price-package[]"></select>
+                          </div>
+                          <div class="form-group col-md-2 col">
                             <label for="date">Date</label>
                             <input type="date" id="date1" name="dates[]" class="form-control" />
                           </div>
@@ -68,7 +72,9 @@
                           <th>Movie</th>
                           <th>Screen</th>
                           <th>Show Time</th>
+                          <th>Price Package</th>
                           <th>Statistics</th>
+                          <th>Collection</th>
                         </tr>
                       </thead>
                       <tbody id="table-body"></tbody>

@@ -1,91 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>
-        Movies
-    </title>
+  <title>
+    Movies
+  </title>
 </head>
+
 <body class="">
-    <div class="wrapper">
-        <div class="sidebar" id="sidebar"></div>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" id="navbar"></nav>
-            <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog"
-                aria-labelledby="searchModal" aria-hidden="true" id="searchModal"></div>
-            <!-- End Navbar -->
-            <div class="content">
+  <div class="wrapper">
+    <div class="sidebar" id="sidebar"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" id="navbar"></nav>
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+        aria-hidden="true" id="searchModal"></div>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Movies</h5>
+              </div>
+              <div class="card-body all-icons">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="title">Movies</h5>
-                            </div>
-                            <div class="card-body all-icons">
-                                <div class="row">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form id="add-movies-form">
-                                                <div class="row">
-                                                    <div class="form-group col-md-3 col">
-                                                        <label for="movies">Movie</label>
-                                                        <input class="form-control" type="text" name="name" required placeholder="Enter movie name" id="name">
-                                                    </div>
-                                                    <div class="form-group col-md-3 col">
-                                                        <label>Language</label>
-                                                        <input class="form-control" type="text" name="language" required placeholder="Enter language" id="language">
-                                                    </div>
-                                                    <div class="form-group col-md-3 col">
-                                                        <label>Rating</label>
-                                                        <input class="form-control" type="text" name="rating" required placeholder="Enter rating" id="rating">
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary float-right"
-                                                    id="sumbit-add-movie">Submit</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card  card-plain">
-                          <div class="card-body">
-                            <div class="table-responsive">
-                              <table class="table tablesorter " id="">
-                                <thead class=" text-primary">
-                                  <tr>
-                                    <th>
-                                      Name
-                                    </th>
-                                    <th>
-                                      Language
-                                    </th>
-                                    <th>
-                                      Rating
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody id="movie-table-body">
-                                </tbody>
-                              </table>
-                            </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <form id="add-movies-form">
+                        <div class="row">
+                          <div class="form-group col-md-3 col">
+                            <label for="movies">Movie</label>
+                            <input class="form-control" type="text" name="name" required placeholder="Enter movie name"
+                              id="name">
+                          </div>
+                          <div class="form-group col-md-3 col">
+                            <label>Language</label>
+                            <input class="form-control" type="text" name="language" required
+                              placeholder="Enter language" id="language">
+                          </div>
+                          <div class="form-group col-md-3 col">
+                            <label>Rating</label>
+                            <input class="form-control" type="text" name="rating" required placeholder="Enter rating"
+                              id="rating">
                           </div>
                         </div>
-                      </div>
+                        <button type="submit" class="btn btn-primary float-right" id="sumbit-add-movie">Submit</button>
+                      </form>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
-            <footer class="footer"></footer>
+          </div>
+          <div class="col-md-12">
+            <div class="card  card-plain">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Language
+                        </th>
+                        <th>
+                          Rating
+                        </th>
+                        <th>
+                          Shows
+                        </th>  
+                        <th>
+                          No. of tickets
+                        </th>
+                        <th>
+                          Collection
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="movie-table-body">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div hidden id="spinner"></div>
-    <div id="scripts"></div>
-    <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script defer src="../assets/js/common.js"></script>
-    <script defer src="../assets/js/movies.js"></script>
+  </div>
+  <footer class="footer"></footer>
+  </div>
+  </div>
+  <div hidden id="spinner"></div>
+  <div id="scripts"></div>
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+  <script defer src="../assets/js/movies.js"></script>
 </body>
+
 </html>

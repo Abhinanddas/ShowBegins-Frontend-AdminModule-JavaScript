@@ -36,7 +36,7 @@ function onSeatClick(event) {
 }
 
 function getTicketChargeInfo(num = 1) {
-  callGetApi("ticket-charge/" + num).then((response) => {
+  callGetApi("ticket-charge" + '?showId=' + showId + '&num=' + num).then((response) => {
     if (response.status === "success") {
       makeTicketInfoDiv(response.data);
     }
@@ -77,7 +77,7 @@ function bookTickets() {
     return;
   }
 
-  callGetApi("ticket-charge/" + num).then((response) => {
+  callGetApi("ticket-charge/" + '?showId=' + showId + '&num=' + num).then((response) => {
     if (response.status === "success") {
       promptTicketConfirm(response.data.total_amount, num);
     }
@@ -129,7 +129,7 @@ function purchaseTicket() {
 
 function getShowDetails() {
 
-  callGetApi('show/' +showId).then((response) => {
+  callGetApi('show/' + showId).then((response) => {
 
     let data = response.data;
     let div = ` <div class="col-12">
@@ -150,7 +150,7 @@ function getShowDetails() {
 
 function loadPurchaseHistory() {
   let tableHtml = "";
-  callGetApi("purchases" +'?showId=' + showId).then((response) => {
+  callGetApi("purchases" + '?showId=' + showId).then((response) => {
     response.data.forEach((data) => {
       tableHtml += `
             <tr>

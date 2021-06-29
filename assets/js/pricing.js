@@ -6,9 +6,8 @@ document.getElementById('sumbit-pricing-package').addEventListener('click', sumb
 document.getElementById('base-charges').addEventListener('change', loadOtherChargeOptions);
 function onPageLoad() {
     loadPricingTable();
-    callGetApi("pricing").then((response) => {
-        makeBasePriceOptions(response.data);
-    });
+    loadPricePackageTable();
+    makeBasePriceOptions();
 }
 
 function loadPricingTable() {
@@ -19,7 +18,7 @@ function loadPricingTable() {
             <tr>
             <td>${price.name}</td>
             <td>${price.value} ${price.is_percentage ? '%' : ''}</td>
-            <td></td>
+            <td><i class="tim-icons icon-trash-simple pointer" onclick="removePrice(${price.id})" id="screen-${price.id}" data-name="${price.name}"></i></td>
             `;
         });
         if (pricingTableHtml === '') {
@@ -47,6 +46,8 @@ function submitAddPricingForm(e) {
     callPostApi("pricing", params).then((response) => {
         addToast(response.msg, response.status);
         loadPricingTable();
+        makeBasePriceOptions();
+        clearForm(form);
     });
 }
 
@@ -59,13 +60,18 @@ function makeFormData() {
 }
 
 function makeBasePriceOptions(prices) {
-    let select = document.getElementById("base-charges");
-    prices.forEach(function (data) {
-        if (!data.is_percentage) {
-            let option = document.createElement("option");
-            option.value = data.id;
-            option.innerHTML = data.name;
-            select.append(option);
+    callGetApi("pricing").then((response) => {
+        if(response.status==='success'){
+
+            let select = document.getElementById("base-charges");
+            response.data.forEach(function (data) {
+                if (!data.is_percentage) {
+                    let option = document.createElement("option");
+                    option.value = data.id;
+                    option.innerHTML = data.name;
+                    select.append(option);
+                }
+            });
         }
     });
 }
@@ -84,6 +90,7 @@ function sumbitPricePackageForm(e) {
     callPostApi("price-package", params).then((response) => {
         addToast(response.msg, response.status);
         loadPricePackageTable();
+        clearForm(form);
     });
 }
 
@@ -113,6 +120,39 @@ function makeOtherPriceOptions(prices) {
 }
 
 function loadPricePackageTable() {
+    let pricingPackageTableHtml = '';
+    callGetApi('price-package').then(response => {
+        if (response.status === 'success') {
+            response.data.forEach(price => {
+
+                let baseCharge = '';
+                let otherCharge = '';
+                price.price.forEach(charge => {
+                    if (charge.is_base_charge == true) {
+                        baseCharge += charge.name + '<br>';
+                    } else {
+                        otherCharge += charge.name + '<br>';
+                    }
+                });
+
+                pricingPackageTableHtml += `
+                <tr>
+                <td>${price.name}</td>
+                <td>${baseCharge}</td>
+                <td>${otherCharge}</td>
+                <td><i class="tim-icons icon-trash-simple pointer" onclick="removePricePackage(${price.id})" id="screen-${price.id}" data-name="${price.name}"></i></td>
+                </tr>`;
+            });
+            if (pricingPackageTableHtml === '') {
+                pricingPackageTableHtml = `
+                <tr>
+                <td colspan="4" class="text-center"> No data found.</td>
+                </tr>
+                `;
+            }
+            document.getElementById("pricing-package-table-body").innerHTML = pricingPackageTableHtml;
+        }
+    });
 
 }
 

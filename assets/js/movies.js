@@ -16,6 +16,9 @@ function loadMovieTable() {
             <td>${movie.name}</td>
             <td>${movie.language??''}</td>
             <td>${movie.rating??''}</td>
+            <td>${movie.show_count}</td>
+            <td>${movie.num_of_tickets}</td>
+            <td>${movie.collection}</td>
             `;
     });
     document.getElementById("movie-table-body").innerHTML = movieTableHtml;

@@ -18,6 +18,17 @@ function onPageLoad() {
     screens = response.data;
     makeScreenOptions(1);
   });
+
+  makePricePackageOptions();
+
+}
+
+function makePricePackageOptions(index){
+  callGetApi('price-package').then((response)=>{
+    if(response.status==='success'){
+      appendPricePackageOptions(response.data, index);
+    }
+  })
 }
 
 function makeScreenOptions(index) {
@@ -26,6 +37,17 @@ function makeScreenOptions(index) {
     let option = document.createElement("option");
     option.value = data.id;
     option.innerHTML = data.name;
+    select.append(option);
+  });
+}
+
+function appendPricePackageOptions(pricePackage, index=1){
+  let select = document.getElementById("price-package" + index);
+  pricePackage.forEach(function (data) {
+    let option = document.createElement("option");
+    option.value = data.id;
+    option.innerHTML = data.name;
+    option.className = "selectOption";
     select.append(option);
   });
 }
@@ -73,6 +95,7 @@ function makeFormData() {
   let screens = document.getElementsByName("screens[]");
   let dates = document.getElementsByName("dates[]");
   let time = document.getElementsByName("time[]");
+  let pricePackage = document.getElementsByName("price-package[]");
 
   let formData = [];
 
@@ -82,6 +105,7 @@ function makeFormData() {
       screen: getSelectedValues(screens[i].selectedOptions),
       date: dates[i].value,
       time: getSelectedValues(time[i].selectedOptions),
+      pricePackage: pricePackage[i].value,
     };
     formData.push(showArray);
   }
@@ -97,7 +121,9 @@ function loadShowsTable() {
               <td>${data.movie_name  ?? "NA"}</td>
               <td>${data.screen_name ?? "NA"}</td>
               <td>${data.show_time ?? "NA"}</td>
+              <td>${data.price_package ?? "NA"}</td>
               <td>${data.tickets_sold}/${data.seat_count }</td>
+              <td>${data.collection}</td>
               `;
     });
     document.getElementById("table-body").innerHTML = showTable;
